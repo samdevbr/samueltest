@@ -42,7 +42,7 @@ trait RestController
 
 		$entity = $this->onCreate($request);
 
-		return response()->json($entity, Response::HTTP_CREATED);
+		return response()->json($entity);
 	}
 
 	protected function beforeGet(Request $request, $identifer)
@@ -78,9 +78,9 @@ trait RestController
 	{
 		$this->beforeUpdate($request, $identifer);
 
-		$this->onUpdate($request, $identifer);
+		$entity = $this->onUpdate($request, $identifer);
 
-		return response()->json(null, Response::HTTP_NO_CONTENT);
+		return response()->json($entity);
 	}
 
 	protected function beforeDelete(Request $request, $identifer)
@@ -99,6 +99,6 @@ trait RestController
 
 		$this->onDelete($request, $identifer);
 
-		return response()->json(null, Response::HTTP_NO_CONTENT);
+		return response()->json([], Response::HTTP_OK);
 	}
 }

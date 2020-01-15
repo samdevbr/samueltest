@@ -9,7 +9,7 @@ services:
   php-fpm:
     build: ./php-fpm
     volumes:
-      - ../:/var/www/html
+      - ../src:/var/www/html
     links:
       - mongodb
   nginx:
@@ -17,6 +17,6 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../:/var/www/html
+      - ../src:/var/www/html
     links:
       - php-fpm

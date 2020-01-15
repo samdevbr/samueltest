@@ -27,4 +27,9 @@ class ApiRouterTest extends TestCase
 		$this->assertEquals($expected, $actual);
 		$this->assertNotEquals($notExpected, $actual);
 	}
+
+	public function testResourceMethodExists()
+	{
+		$this->assertTrue(method_exists(ApiRouter::class, 'resource'));
+	}
 }

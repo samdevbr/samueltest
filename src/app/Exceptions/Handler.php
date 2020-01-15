@@ -6,6 +6,7 @@ use App\WinWin\Exceptions\ApiException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -53,7 +54,11 @@ class Handler extends ExceptionHandler
 			return response()->json([
 				'error' => $exception->message
 			], $exception->statusCode);
-		}
+        } else if ($exception instanceof ValidationException) {
+            return response()->json([
+				'error' => $exception->getMessage()
+			], $exception->status);
+        }
 
 		$error = app()->environment() === 'production' ? 'Unexpceted error' : $exception->getMessage();
 

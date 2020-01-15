@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
 
         /*
          * Application Service Providers...

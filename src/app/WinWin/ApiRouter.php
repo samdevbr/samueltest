@@ -21,9 +21,9 @@ class ApiRouter
 		], function() use ($controller) {
 			Route::get('/', $controller . '@list');
 			Route::post('/', $controller . '@create');
-			Route::get('/{id}', $controller . '@get');
-			Route::put('/{id}', $controller . '@update');
-			Route::delete('/{id}', $controller . '@delete');
+			Route::get('/{identifer}', $controller . '@get');
+			Route::put('/{identifer}', $controller . '@update');
+			Route::delete('/{identifer}', $controller . '@delete');
 		});
 	}
 }

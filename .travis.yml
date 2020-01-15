@@ -19,7 +19,7 @@ before_script:
   - echo 'assert.exception=On' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 script:
-  - ./src/vendor/bin/phpunit --coverage-clover=coverage.xml
+  - ./src/vendor/bin/phpunit
 
 notifications:
   email: false

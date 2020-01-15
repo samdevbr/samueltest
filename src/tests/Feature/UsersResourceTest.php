@@ -12,4 +12,13 @@ class UsersResourceTest extends TestCase
 			->assertStatus(Response::HTTP_OK)
 			->assertExactJson([]);
 	}
+
+	public function testWrongUri()
+	{
+		$this->call('GET', '/ussers')
+			->assertStatus(Response::HTTP_INTERNAL_SERVER_ERROR)
+			->assertJsonStructure([
+				'error'
+			]);
+	}
 }

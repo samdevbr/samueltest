@@ -37,7 +37,8 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
         parent::report($exception);
-    }
+		// report to newrelic ?
+	}
 
     /**
      * Render an exception into an HTTP response.

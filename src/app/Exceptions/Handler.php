@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\WinWin\Exceptions\ApiException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +48,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+		if ($exception instanceof ApiException) {
+			return response()->json([
+				'error' => $exception->message
+			], $exception->statusCode);
+		}
+
+		$error = app()->environment() === 'production' ? 'Unexpceted error' : $exception->getMessage();
+
+        return response()->json([
+			'error' => $error
+		], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
